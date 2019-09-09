@@ -15,7 +15,11 @@ router.post('/companies', async (req, res) => {
 router.get('/companies', async (req, res) => {
     try {
         const companies = await Company.findAll({
-            include: [User]
+            include: {
+                model: User,
+                attributes: ["name", "email", "age"]
+            },
+            attributes: ["id", "name"]
         });
         res.status(201).json(companies);
     } catch (e) {

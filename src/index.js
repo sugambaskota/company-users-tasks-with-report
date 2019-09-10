@@ -4,6 +4,7 @@ const companyRouter = require('./routers/company');
 const userRouter = require('./routers/user');
 const taskRouter = require('./routers/task');
 const logRouter = require('./routers/log');
+const adminRouter = require('./routers/admin');
 const Company = require('./models/company');
 const User = require('./models/user');
 const Task = require('./models/task');

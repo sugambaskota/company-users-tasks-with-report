@@ -7,9 +7,12 @@ const Task = require('./task');
 const User = sequelize.define('user', {
     id: {
         primaryKey: true,
+        type: Sequelize.INTEGER,
+        autoIncrement: true
+    },
+    uuid: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1
-
     },
     name: {
         type: Sequelize.STRING,
@@ -35,7 +38,8 @@ const User = sequelize.define('user', {
     }
 },
     {
-        timestamps: true
+        timestamps: true,
+        paranoid: true
     });
 
 User.findByCredentials = async (email, password, companyId) => {

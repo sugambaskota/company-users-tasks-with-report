@@ -15,6 +15,15 @@ router.post('/users', async (req, res) => {
             action: 'POST /users',
             time: timeNow
         });
+        let sentUser = JSON.parse(user);
+        delete sentUser.id;
+        delete sentUser.password;
+        delete sentUser.createdAt;
+        delete sentUser.updatedAt;
+        sentUser.uuid = sentUser.ID;
+        sentUser.name = sentUser.Name;
+        sentUser.email = sentUser.Email;
+        sentUser.age = sentUser.Age;
         res.status(201).json({ user, token });
     } catch (e) {
         res.status(400).send(e);

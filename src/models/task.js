@@ -5,6 +5,10 @@ const User = require('./user');
 const Task = sequelize.define('task', {
     id: {
         primaryKey: true,
+        type: Sequelize.INTEGER,
+        autoIncrement: true
+    },
+    uuid: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1
     },
@@ -18,7 +22,8 @@ const Task = sequelize.define('task', {
         defaultValue: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    paranoid: true
 });
 
 module.exports = Task;

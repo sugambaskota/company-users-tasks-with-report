@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.post('/companies', async (req, res) => {
     try {
-        const company = await Company.create(req.body);
-        res.status(201).json(company);
+        await Company.create(req.body);
+        res.status(201).send();
     } catch (e) {
         res.status(400).send(e);
     }
@@ -15,13 +15,15 @@ router.post('/companies', async (req, res) => {
 router.get('/companies', async (req, res) => {
     try {
         const companies = await Company.findAll({
-            include: {
-                model: User,
-                attributes: ["name", "email", "age"]
-            },
-            attributes: ["id", "name"]
+            include: [
+                {
+                    model: User,
+                    attributes: [["name", "Name"], ["email", "Email"], ["age", "Age"]]
+                }
+            ],
+            attributes: [["id", "ID"], ["name", "Name"]]
         });
-        res.status(201).json(companies);
+        res.status(200).json(companies);
     } catch (e) {
         res.status(400).send(e);
     }
